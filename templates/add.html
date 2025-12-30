@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Movie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- poprawny link do CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>My favorite movies to watch</h1>
+  </div>
+</header>
+
+<main class="container">
+  <section class="column column-50">
+    <h2>Add movie</h2>
+
+    {% if error %}
+      <p class="msg error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('addMovie') }}">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" placeholder="np. The Matrix">
+
+      <label for="year">Year:</label>
+      <input type="text" id="year" name="year" placeholder="np. 1999">
+
+      <label for="actors">Actors:</label>
+      <input type="text" id="actors" name="actors" placeholder="np. Keanu Reeves, Laurence Fishburne">
+
+      <button type="submit" class="button button-primary">ADD</button>
+    </form>
+
+    <p style="margin-top:1rem;">
+      <a href="{{ url_for('home') }}">&lt; Back to list of movies</a>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <hr />
+    <p>© My Movie Database. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

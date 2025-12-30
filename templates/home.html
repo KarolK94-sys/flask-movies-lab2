@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Movie Database</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- poprawny link do CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>My favorite movies to watch</h1>
+  </div>
+</header>
+
+<main class="container">
+  <section class="column column-50">
+    <h2>Titles</h2>
+
+    <form method="POST">
+      <ul id="moviesList">
+        {% for movie in movies %}
+          <li>
+            <input type="checkbox" name="movieToRemove" value="{{ movie[0] }}">
+            {{ movie[1] }}, {{ movie[2] }}, {{ movie[3] }}
+          </li>
+        {% endfor %}
+      </ul>
+
+      <button type="submit" class="button button-primary">DELETE SELECTED</button>
+    </form>
+
+    <p style="margin-top:1rem;">
+      <a href="{{ url_for('addMovie') }}">Add new movie</a>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <hr />
+    <p>© My Movie Database. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
